@@ -10,12 +10,13 @@ class renderer():
         objects = []
         for object in self.object_array:
             if object[1] < self.y-object[2]:
-                #o = object[3]*math.cos(object[4])
-                object[3] = -((self.g+object[3]*math.sin(object[4])))#**2+(object[3]*math.cos(object[4]))**2)**0.5
-                #object[4] = math.asin(o/object[3])
-                #print(o)
-                object[1] += object[3]*math.sin(object[4])
-                #object[0] += object[3]*math.cos(object[4])
+                object[4] += self.g
+                object[0] += object[3]
+                object[1] += object[4]
+                if object[1] < self.y-object[2]:
+                    pass
+                else:
+                    object[1] = self.y-object[2]
             else:
                 object[1] = self.y-object[2]
             objects.append(object)
@@ -23,5 +24,7 @@ class renderer():
         
 
 class circle(renderer):
-    def __init__(self, _r = 10, _x = 100, _y = 100, _v = 0, _a = 1.5*math.pi):
-        super().object_array.append([_x, _y, _r, _v, _a])
+    def __init__(self, _r = 10, _x = 100, _y = 100, _v = 10, _a = 0.5*math.pi):
+        _vy = _v*math.cos(_a)
+        _vx = _v*math.sin(_a)
+        super().object_array.append([_x, _y, _r, _vx, _vy, _a])
