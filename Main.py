@@ -20,7 +20,7 @@ class renderer():
             else:
                 object[1] = self.y-object[2]
             if object[0] > self.x-object[2] or object[0] < object[2] :
-                object[0] = -object[0]
+                object[3] = -object[3]
             objects.append(object)
         return objects
         
