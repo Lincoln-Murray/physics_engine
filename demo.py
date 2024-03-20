@@ -5,7 +5,7 @@ from tkinter import *
 import time
 
 renderer = Main.renderer()
-circle = Main.circle()
+circle = Main.circle(renderer)
 
 frame_time = 1
 
@@ -27,7 +27,8 @@ def loop():
     start = time.time()
     objects = renderer.new_frame((50-frame_time)/1000)
     for object in objects:
-        viewport.create_oval(object[0]-object[2], object[1]-object[2], object[0]+object[2], object[1]+object[2], fill='green')
+        if object[0] == 'circle':
+            viewport.create_oval(object[3]-object[-1], object[4]-object[-1], object[3]+object[-1], object[4]+object[-1], fill='green')
     frame_time = int((time.time() - start))
     if frame_time < 50:
         master.after(50-frame_time,loop)

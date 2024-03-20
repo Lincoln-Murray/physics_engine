@@ -11,23 +11,29 @@ class renderer():
         objects = []
         iterations_per_frame = 1/_frame_time
         for object in self.object_array:
-            if object[1] < self.y-object[2]:
-                object[4] += self.ppm*self.g**(1/iterations_per_frame)
-                if abs(object[3]) == object[3]:
-                    object[0] += self.ppm*abs(object[3])**(1/iterations_per_frame)
+            if object[4] < self.y-object[-1]:
+                object[2] += self.ppm*self.g**(1/iterations_per_frame)
+                if abs(object[1]) == object[1]:
+                    object[3] += self.ppm*abs(object[1])**(1/iterations_per_frame)
                 else:
-                    object[0] -= self.ppm*abs(object[3])**(1/iterations_per_frame)
-                object[1] += self.ppm*object[4]**(1/iterations_per_frame)
-            if object[1] >= self.y-object[2]:
-                object[1] = self.y-object[2]
-            if object[0] > self.x-object[2] or object[0] < object[2] :
-                object[3] = -object[3]
+                    object[3] -= self.ppm*abs(object[1])**(1/iterations_per_frame)
+                object[4] += self.ppm*object[2]**(1/iterations_per_frame)
+            if object[4] >= self.y-object[-1]:
+                object[4] = self.y-object[-1]
+            if object[3] > self.x-object[-1] or object[3] < object[-1] :
+                object[1] = -object[3]
             objects.append(object)
         return objects
         
-
-class circle(renderer):
-    def __init__(self, _r = 10, _x = 400, _y = 100, _v = 30, _a = 0.5*math.pi):
+    #super().object_array.append([_x, _y, _r, _vx, _vy, _a])
+class circle():
+    def __init__(self, parent, _r = 10, _x = 400, _y = 100, _v = 30, _a = 0.5*math.pi):
         _vy = _v*math.cos(_a)
         _vx = _v*math.sin(_a)
-        super().object_array.append([_x, _y, _r, _vx, _vy, _a])
+        parent.object_array.append(['circle', _vx, _vy, _x, _y, _r])
+
+class rectangle():
+    def __init__(self, parent, _x1 = 400, _y1 = 100, _x2 = 410, _y2 = 110, _v = 30, _a = 0.5*math.pi):
+        _vy = _v*math.cos(_a)
+        _vx = _v*math.sin(_a)
+        parent.object_array.append(['rectangle', _vx, _vy, _x1, _y1, _x2, _y2])
