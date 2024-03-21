@@ -6,6 +6,7 @@ import time
 
 renderer = Main.renderer()
 circle = Main.circle(renderer)
+rect = Main.rectangle(renderer)
 
 frame_time = 1
 
@@ -29,6 +30,8 @@ def loop():
     for object in objects:
         if object[0] == 'circle':
             viewport.create_oval(object[3]-object[-1], object[4]-object[-1], object[3]+object[-1], object[4]+object[-1], fill='green')
+        if object[0] == 'rectangle':
+            viewport.create_rectangle(object[3], object[4], object[5], object[6], fill='red')
     frame_time = int((time.time() - start))
     if frame_time < 50:
         master.after(50-frame_time,loop)
