@@ -33,8 +33,8 @@ def loop():
         if object[0] == 'rectangle':
             viewport.create_rectangle(object[3], object[4], object[5], object[6], fill='red')
     frame_time = int((time.time() - start))
-    if frame_time < 50:
-        master.after(50-frame_time,loop)
+    if frame_time < 40:
+        master.after(40-frame_time,loop)
     else:
         frame_time = 1
         master.after(1,loop)
