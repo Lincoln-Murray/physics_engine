@@ -31,23 +31,29 @@ class renderer():
                     object[1] = object[1] * -self.decay_rate
 
             elif object[0] == 'rectangle':
-                if object[6] < self.y:
-                    object[2] += self.ppm*self.g**(1/iterations_per_frame)
-                    if abs(object[1]) == object[1]:
-                        object[3] += self.ppm*abs(object[1])**(1/iterations_per_frame)
-                        object[5] += self.ppm*abs(object[1])**(1/iterations_per_frame)
-                    else:
-                        object[3] -= self.ppm*abs(object[1])**(1/iterations_per_frame)
-                        object[5] -= self.ppm*abs(object[1])**(1/iterations_per_frame)
-                    object[4] += self.ppm*object[2]**(1/iterations_per_frame)
-                    object[6] += self.ppm*object[2]**(1/iterations_per_frame)
+                object[2] += self.ppm*self.g**(1/iterations_per_frame)
+
+                if abs(object[1]) == object[1]:
+                    object[3] += self.ppm*abs(object[1])**(1/iterations_per_frame)
+                    object[5] += self.ppm*abs(object[1])**(1/iterations_per_frame)
+                else:
+                    object[3] -= self.ppm*abs(object[1])**(1/iterations_per_frame)
+                    object[5] -= self.ppm*abs(object[1])**(1/iterations_per_frame)
+                
+                if abs(object[2]) == object[2]:
+                    object[4] += self.ppm*abs(object[2])**(1/iterations_per_frame)
+                    object[6] += self.ppm*abs(object[2])**(1/iterations_per_frame)
+                else:
+                    object[4] -= self.ppm*abs(object[2])**(1/iterations_per_frame)
+                    object[6] -= self.ppm*abs(object[2])**(1/iterations_per_frame)
+
                 if object[6] >= self.y:
                     delta_y = object[6]-object[4]
                     object[6] = self.y
                     object[4] = object[6] - delta_y 
+                    object[2] = object[2] * -self.decay_rate
                 if object[5] > self.x or object[3] < 0 :
-                    object[1] = -object[1]
-
+                    object[1] = object[1] * -self.decay_rate
             objects.append(object)
         return objects
         
