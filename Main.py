@@ -27,8 +27,12 @@ class renderer():
                 if object[4] >= self.y-object[-1]:
                     object[4] = self.y-object[-1]
                     object[2] = object[2] * -self.decay_rate
+                    object[1] = object[1] * 0.1*self.decay_rate
+
                 if object[3] > self.x-object[-1] or object[3] < object[-1] :
                     object[1] = object[1] * -self.decay_rate
+                    object[2] = object[2] * 0.1*self.decay_rate
+
 
             elif object[0] == 'rectangle':
                 object[2] += self.ppm*self.g**(1/iterations_per_frame)
@@ -52,8 +56,11 @@ class renderer():
                     object[6] = self.y
                     object[4] = object[6] - delta_y 
                     object[2] = object[2] * -self.decay_rate
+                    object[1] = object[1] * 0.1*self.decay_rate
                 if object[5] > self.x or object[3] < 0 :
                     object[1] = object[1] * -self.decay_rate
+                    object[2] = object[2] * 0.1*self.decay_rate
+
             objects.append(object)
         return objects
         
