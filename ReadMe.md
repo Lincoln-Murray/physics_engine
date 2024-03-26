@@ -39,7 +39,7 @@ x, y = 100,100
 velocity, angle_radians = 30, 0.5*math.pi  
 circle = Main.circle(x, y, velocity, angle_radians)  
 ```
-or a rectanlge:  
+or a rectangle:  
 ```
 left, right, top, bottom = 200, 250, 100, 150  
 velocity, angle_radians = 60, 0.5*math.pi  
