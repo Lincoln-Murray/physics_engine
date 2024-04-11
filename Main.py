@@ -69,10 +69,26 @@ class circle():
     def __init__(self, parent, _r = 10, _x = 400, _y = 100, _v = 30, _a = 0.5*math.pi):
         _vy = _v*math.cos(_a)
         _vx = _v*math.sin(_a)
-        parent.object_array.append(['circle', _vx, _vy, _x, _y, _r])
+        self.attributes = ['circle', _vx, _vy, _x, _y, _r]
+        parent.object_array.append(self.attributes)
+        self.location = parent.object_array.index(self.attributes)
+        self.parent = parent
+    
+    def delete(self):
+        print(self.location)
+        del self.parent.object_array[self.location]
+        del self
 
 class rectangle():
     def __init__(self, parent, _x1 = 200, _y1 = 100, _x2 = 250, _y2 = 150, _v = 60, _a = 0.5*math.pi):
         _vy = _v*math.cos(_a)
         _vx = _v*math.sin(_a)
-        parent.object_array.append(['rectangle', _vx, _vy, _x1, _y1, _x2, _y2])
+        self.attributes = ['rectangle', _vx, _vy, _x1, _y1, _x2, _y2]
+        parent.object_array.append(self.attributes)
+        self.location = parent.object_array.index(self.attributes)
+        self.parent = parent
+    
+    def delete(self):
+        print(self.location)
+        del self.parent.object_array[self.location]
+        del self

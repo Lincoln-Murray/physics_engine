@@ -22,8 +22,12 @@ viewport = Canvas(frame, width=renderer.x, height=renderer.y)
 viewport.pack(side=TOP)
 
 #main loop
+num_frames = 0
 def loop():
-    global frame_time
+    global frame_time, num_frames
+    num_frames +=1
+    if num_frames == 60:
+        circle.delete()
     viewport.create_rectangle(0,0,renderer.x,renderer.y, fill='white')
     start = time.time()
     objects = renderer.new_frame((50-frame_time)/1000)
