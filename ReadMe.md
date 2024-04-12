@@ -45,3 +45,7 @@ left, right, top, bottom = 200, 250, 100, 150
 velocity, angle_radians = 60, 0.5*math.pi  
 rectangle = Main.rectangle(left, top, right, bottom, velocity, angle_radians)  
 ```
+or delete objects:  
+```
+circle.delete()
+```
