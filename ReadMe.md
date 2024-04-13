@@ -49,3 +49,8 @@ or delete objects:
 ```
 circle.delete()
 ```
+to create a list of objects from the new frame:  
+```
+interval_between_frames = 25 #ms  
+objects = renderer.new_frame(1/interval_between_frames)  
+```
