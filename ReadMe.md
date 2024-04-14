@@ -51,6 +51,7 @@ circle.delete()
 ```
 to create a list of objects from the new frame:  
 ```
-interval_between_frames = 25 #ms  
-objects = renderer.new_frame(1/interval_between_frames)  
+interval_between_frames = 25 #ms
+time_per_frame = interval_between_frames / 1000 #seconds
+objects = renderer.new_frame(time_per_frame)  
 ```
