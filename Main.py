@@ -2,13 +2,13 @@ import math
 
 class renderer():
     object_array = []
-    def __init__(self, _x =600, _y = 400, _g = 9.8, _pixels_per_metre = 10, decay_rate = 0.95):
+    def __init__(self, _x =600, _y = 400, _g = 9.8, _pixels_per_metre = 10, decay_rate = 0.95) -> None:
         self.x, self.y = _x, _y
         self.g = _g
         self.ppm = _pixels_per_metre
         self.decay_rate = decay_rate
     
-    def new_frame(self, _frame_time):
+    def new_frame(self, _frame_time) -> list:
         objects = []
         iterations_per_frame = 1/_frame_time
         for object in self.object_array:
@@ -66,7 +66,7 @@ class renderer():
         
     #super().object_array.append([_x, _y, _r, _vx, _vy, _a])
 class circle():
-    def __init__(self, parent, _r = 10, _x = 400, _y = 100, _v = 30, _a = 0.5*math.pi):
+    def __init__(self, parent, _r = 10, _x = 400, _y = 100, _v = 30, _a = 0.5*math.pi) -> None:
         _vy = _v*math.cos(_a)
         _vx = _v*math.sin(_a)
         self.attributes = ['circle', _vx, _vy, _x, _y, _r]
@@ -74,13 +74,13 @@ class circle():
         self.location = parent.object_array.index(self.attributes)
         self.parent = parent
     
-    def delete(self):
+    def delete(self) -> None:
         print(self.location)
         del self.parent.object_array[self.location]
         del self
 
 class rectangle():
-    def __init__(self, parent, _x1 = 200, _y1 = 100, _x2 = 250, _y2 = 150, _v = 60, _a = 0.5*math.pi):
+    def __init__(self, parent, _x1 = 200, _y1 = 100, _x2 = 250, _y2 = 150, _v = 60, _a = 0.5*math.pi) -> None:
         _vy = _v*math.cos(_a)
         _vx = _v*math.sin(_a)
         self.attributes = ['rectangle', _vx, _vy, _x1, _y1, _x2, _y2]
@@ -88,7 +88,7 @@ class rectangle():
         self.location = parent.object_array.index(self.attributes)
         self.parent = parent
     
-    def delete(self):
+    def delete(self) -> None:
         print(self.location)
         del self.parent.object_array[self.location]
         del self
